@@ -1,7 +1,7 @@
 # pertino-cookbook
 
 [![Cookbook](http://img.shields.io/cookbook/v/pertino.svg)](https://supermarket.chef.io/cookbooks/pertino)
-[![Circle CI](https://circleci.com/gh/miketheman/pertino-cookbook.svg?style=shield)](https://circleci.com/gh/miketheman/pertino-cookbook)
+[![CircleCI](https://img.shields.io/circleci/project/miketheman/pertino-cookbook.svg)](https://circleci.com/gh/miketheman/pertino-cookbook)
 [![Coverage Status](https://coveralls.io/repos/miketheman/pertino-cookbook/badge.svg?branch=master)](https://coveralls.io/r/miketheman/pertino-cookbook?branch=master)
 [![GitHub issues](https://img.shields.io/github/issues/miketheman/pertino-cookbook.svg)](https://github.com/miketheman/pertino-cookbook/issues)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/miketheman/pertino-cookbook/master/LICENSE)
@@ -14,7 +14,7 @@ This cookbook exposes a resource to set up a connection to the [Pertino](http://
 - Ubuntu 12.04
 - CentOS 6.6
 
-- Chef 12.0.3
+- Chef 11.18.12, 12.0.3
 
 See [TESTING.md](TESTING.md) for more.
 

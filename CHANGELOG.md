@@ -1,3 +1,7 @@
+# Next / Unreleased
+
+- [TESTING] Add kitchen testing for Ubuntu targets via CI
+
 # 0.1.1 / 2015-02-19
 
 - [OPTIMIZE] Add Chef 11 support for `service` provider detection

@@ -4,12 +4,15 @@ driver:
   privileged: true # needed in order to create tunnels
   disable_upstart: false
   run_command: /sbin/init
+  ssh_timeout: 15 # until Transport refactor is solved. See: http://git.io/NX70
+  ssh_retries: 5
 
 platforms:
-  - name: centos-6.6
-    driver:
-      platform: centos
-      image: centos:6.6
+  # TODO: Figure out service runner inside a container
+  # - name: centos-6.6
+  #   driver:
+  #     platform: centos
+  #     image: centos:6.6
 
   - name: ubuntu-12.04
     driver:

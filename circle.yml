@@ -2,7 +2,7 @@ machine:
   environment:
     KITCHEN_LOCAL_YAML: .kitchen.docker.yml
   ruby:
-    version: 2.2.0
+    version: 2.2.2
   services:
     - docker
 
@@ -13,3 +13,5 @@ dependencies:
 test:
   override:
     - bundle exec rake
+    - bundle exec kitchen verify -c:
+        timeout: 900
