@@ -1,0 +1,17 @@
+# Some files are beyond our control, so don't even try to test them.
+AllCops:
+  Exclude:
+    - Guardfile
+    - 'vendor/**/*'
+
+# While 80 characters is a nice goal, it's a bit dated.
+# It's very convenient to allow for longer lines, however we don't want to
+# get too long.
+Metrics/LineLength:
+  Max: 160
+
+# The cookbook's metadata.rb is lined up visually, which is pleasant.
+# Let's keep that one aligned with spaces for readability.
+Style/SingleSpaceBeforeFirstArg:
+  Exclude:
+    - metadata.rb
