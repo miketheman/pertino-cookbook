@@ -1,5 +1,6 @@
 # 0.1.1 / Unreleased
 
+- [OPTIMIZE] Add Chef 11 support for `service` provider detection
 - [OPTIMIZE] Add `supports` entries to `metadata.rb` to be detected by Supermarket
 
 # 0.1.0 / 2015-02-14
