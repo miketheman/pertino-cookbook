@@ -42,11 +42,18 @@ module PertinoCookbook
         command "/opt/pertino/pgateway/.pauth --username=#{username} --password=#{password}"
         not_if "grep -q #{username} /opt/pertino/pgateway/conf/client.conf"
         notifies :restart, 'service[pgateway]'
-        # Allow the auth command to fail in test environments where we use bogus creds
-        ignore_failure true \
-          if node.key?('virtualization') && node['virtualization']['system'] == 'vbox' ||
-             ::File.exist?('/.dockerenv')
+        ignore_failure allow_auth_failures?
       end
+    end
+
+    # Allow the auth command to fail in test environments where we use bogus creds
+    # @return [TrueClass] if determined inside a test environment
+    # @return [FalseClass] default value
+    def allow_auth_failures?
+      return true if node.key?('virtualization') && node['virtualization']['system'] == 'vbox'
+      return true if ::File.exist?('/.dockerenv')
+      return true if ENV['CI']
+      false
     end
 
     private
