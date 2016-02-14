@@ -1,6 +1,9 @@
-# Next / Unreleased
+# 0.2.0 / 2016-02-14
 
+- [BUGFIX] Remove Chef 11 service provider detection due to package change. See #1
 - [TESTING] Add kitchen testing for Ubuntu targets via CI
+- [TESTING] Use ChefDK as preferred method for CI testing
+- [TESTING] Create method to ignore user auth failures when testing
 
 # 0.1.1 / 2015-02-19
 
