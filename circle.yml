@@ -1,17 +1,21 @@
 machine:
   environment:
     KITCHEN_LOCAL_YAML: .kitchen.docker.yml
-  ruby:
-    version: 2.2.2
+    TESTS: ubuntu-1204 ubuntu-1404
   services:
     - docker
 
 dependencies:
-  bundler:
-    without: [development, kitchen_cloud, kitchen_vagrant]
+  override:
+    - curl -L https://www.chef.io/chef/install.sh | sudo bash -s -- -P chefdk -v 0.10.0
+    - chef gem install kitchen-docker -v '~> 2.3.0'
+    - chef gem install coveralls -v '~> 0.8.10'
+  cache_directories:
+    - "~/.chefdk"
 
 test:
   override:
-    - bundle exec rake
-    - bundle exec kitchen verify -c:
+    - chef exec rake
+    - TESTS_ARRAY=(${TESTS// / }) ; chef exec kitchen verify "${TESTS_ARRAY[$CIRCLE_NODE_INDEX]}":
+        parallel: true
         timeout: 900
