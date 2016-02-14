@@ -48,8 +48,6 @@ class Chef
 
         # start service
         service 'pgateway' do
-          # Chef 12 dynamically determines the correct provider. This is for backwards compat.
-          provider Chef::Provider::Service::Upstart if platform_family?('debian')
           action [:enable, :start]
         end
       end
