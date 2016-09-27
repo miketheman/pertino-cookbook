@@ -6,6 +6,7 @@ module PertinoCookbook
   # @author Mike Fiedler <miketheman@gmail.com>
   module Helpers
     include Chef::DSL::IncludeRecipe
+    include Chef::Mixin::ShellOut
 
     # Perform package repository setup based on platform
     #
@@ -26,7 +27,8 @@ module PertinoCookbook
     # @example '27c0206e-15aa-46b0-842e-3f216f11d8a5'
     def perform_device_auth(api_key)
       execute '.pauth' do
-        command "/opt/pertino/pgateway/.pauth --apikey=#{api_key}"
+        api_flag = api_flag_name()
+        command "/opt/pertino/pgateway/.pauth --#{api_flag}=#{api_key}"
         not_if "grep -q #{api_key} /opt/pertino/pgateway/conf/client.conf"
         notifies :restart, 'service[pgateway]'
       end
@@ -83,6 +85,12 @@ module PertinoCookbook
         sslverify true
         enabled true
       end
+    end
+
+    def api_flag_name
+      cmd = shell_out!('/opt/pertino/pgateway/.pauth --help')
+      return 'device-auth-key' if cmd.stdout =~ /device-auth-key/
+      return 'apikey'
     end
   end
 end
